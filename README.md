@@ -10,6 +10,67 @@ After checking out the project, it's just 2 commands to build
     make
 
 `mkdirs.sh` will create the bin and build directories and their subdirectories. It only needs to be run the first time.
+## Creating a new Solution
+
+To start working on the solution for Day 1, you can follow these steps:
+
+Create Files:
+
+Create a new pair of files for the day, let's say aoc_day_1.h and aoc_day_1.cpp. Place them in the include/solutions directory.
+Inherit from AocDay:
+
+Open aoc_day_1.h and have it inherit from the AocDay class. It should look something like this:
+```cpp
+#pragma once
+#include "solutions/aoc_day.h"
+
+class AocDay1 : public AocDay {
+public:
+    AocDay1() : AocDay(1, "Day 1") {}
+    string part1(string filename, vector<string> extra_args) override;
+    string part2(string filename, vector<string> extra_args) override;
+};
+```
+Implement the Solutions:
+
+Open aoc_day_1.cpp and implement the solutions for part 1 and part 2. It should look something like this:
+```cpp
+#include "solutions/aoc_day_1.h"
+#include "common/file_utils.h"
+
+string AocDay1::part1(string filename, vector<string> extra_args) {
+    // Your code for part 1 goes here
+    // Use file reading functions from FileUtils class if needed
+    return "Part 1 solution";
+}
+
+string AocDay1::part2(string filename, vector<string> extra_args) {
+    // Your code for part 2 goes here
+    // Use file reading functions from FileUtils class if needed
+    return "Part 2 solution";
+}
+```
+Update Makefile:
+
+Open the Makefile and add the .o file for your new day to the list of objects to be linked. Also, make sure the .o file is added to the libsolutions.a library. For example:
+```make
+DAY1_OBJ = build/solutions/aoc_day_1.o
+
+libsolutions.a: $(DAY0_OBJ) $(DAY1_OBJ)
+    ar rcs bin/libsolutions.a $(DAY0_OBJ) $(DAY1_OBJ)
+```
+Build the Project:
+
+Run ./mkdirs.sh (if not done before, only needs to be run once).
+Run make to build the project.
+Run the Solution:
+
+Execute your solution with the provided command-line parameters. For example:
+```bash
+bin/aoc -d 1 -p 1 -f path/to/your/input.txt
+```
+Now you're set to implement and test your solutions for Day 1.
+
 
 ### Working on a Day's Solution
 
