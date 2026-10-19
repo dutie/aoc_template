@@ -1,0 +1,37 @@
+name: CI
+
+on:
+    workflow_dispatch:
+    pull_request:
+    push:
+        branches: [main, master]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: astral-sh/setup-uv@v5
+
+            - name: Install Python dependencies
+              run: uv sync
+
+            - name: Check scripts compile
+              run: uv run python -m compileall -q scripts
+
+            # Puzzle inputs are gitignored, so scaffold a stub day and smoke test the build.
+            - name: Scaffold a stub day
+              run: uv run scripts/scaffold.py 2025 1 --no-fetch
+
+            - name: Build
+              run: make build
+
+            - name: Smoke test
+              run: |
+                  ./build/aoc --list | grep "2025 Day 1"
+                  ./build/aoc 2025 1 --example
