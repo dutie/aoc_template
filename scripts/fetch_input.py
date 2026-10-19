@@ -9,7 +9,7 @@ try:
     import requests
     from dotenv import load_dotenv
 except ImportError:
-    print("Missing dependencies. Run: pip3 install requests python-dotenv")
+    print("Missing dependencies. Run: uv sync")
     exit(1)
 
 SCRIPT_DIR = Path(__file__).parent

@@ -8,8 +8,8 @@ A minimal scaffolding tool for solving Advent of Code puzzles in C++17.
 ## Quick Start
 
 ```bash
-# 1. Install Python dependencies
-pip3 install -r requirements.txt
+# 1. Install Python dependencies (needs uv: https://docs.astral.sh/uv/)
+uv sync
 
 # 2. Configure your AoC session cookie
 cp .env.example .env
@@ -150,5 +150,5 @@ This template includes a GitHub Action that automatically updates the README wit
 
 - CMake 3.14+
 - C++17 compiler (g++, clang++)
-- Python 3.8+
-- `requests` and `python-dotenv` Python packages
+- [uv](https://docs.astral.sh/uv/) (manages Python and the dependencies)
+- Python 3.8+ (uv fetches one if missing)

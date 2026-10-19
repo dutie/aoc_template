@@ -3,6 +3,8 @@
 
 import argparse
 import os
+import subprocess
+import sys
 from pathlib import Path
 import time
 from datetime import datetime
@@ -91,11 +93,10 @@ def scaffold(year: int, day: int, fetch: bool = True):
     
     # Optionally fetch input
     if fetch:
-        import subprocess
         fetch_script = SCRIPT_DIR / "fetch_input.py"
         if fetch_script.exists():
             print(f"\nFetching input for {year} Day {day}...")
-            subprocess.run(["python3", str(fetch_script), str(year), str(day)])
+            subprocess.run([sys.executable, str(fetch_script), str(year), str(day)])
     
     print(f"\n🎄 Scaffolded {year} Day {day}")
     print(f"   Edit: {cpp_path}")

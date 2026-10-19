@@ -13,5 +13,6 @@ build/
 data/
 
 # Python
+.venv/
 __pycache__/
 *.pyc

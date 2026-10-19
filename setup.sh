@@ -21,12 +21,11 @@ echo "Checking requirements..."
 check_command cmake
 check_command make
 check_command g++
-check_command python3
-check_command pip3
+check_command uv
 
 echo ""
 echo "Installing Python dependencies..."
-pip3 install -r requirements.txt
+uv sync
 
 echo ""
 echo "Creating .env file..."

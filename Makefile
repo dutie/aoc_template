@@ -51,7 +51,7 @@ $(eval $(call SET_YEAR_DAY,scaffold))
 
 scaffold:
 	$(REQUIRE_YEAR_DAY)
-	@python3 scripts/scaffold.py "$(YEAR)" "$(DAY)"
+	@uv run scripts/scaffold.py "$(YEAR)" "$(DAY)"
 
 # ------------------------
 # Run
@@ -83,7 +83,7 @@ bench: build
 	@if [ -n "$(YEAR)" ] && [ -n "$(DAY)" ]; then \
 		./build/aoc "$(YEAR)" "$(DAY)" --bench; \
 	else \
-		python3 scripts/benchmark_all.py; \
+		uv run scripts/benchmark_all.py; \
 	fi
 
 # ------------------------
@@ -94,7 +94,7 @@ $(eval $(call SET_YEAR_DAY,fetch))
 
 fetch:
 	$(REQUIRE_YEAR_DAY)
-	@python3 scripts/fetch_input.py "$(YEAR)" "$(DAY)"
+	@uv run scripts/fetch_input.py "$(YEAR)" "$(DAY)"
 
 # ------------------------
 # Misc
